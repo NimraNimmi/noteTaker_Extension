@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Meet Notetaker (No-Bot)",
+  "version": "1.1.0",
+  "description": "Records and transcribes Google Meet from your own tab, generates notes, and lets you chat with the transcript.",
+  "permissions": [
+    "tabCapture",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "storage",
+    "downloads",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://meet.google.com/*",
+    "https://*.zoom.us/*",
+    "https://app.zoom.us/*",
+    "https://api.groq.com/*",
+    "https://huggingface.co/*",
+    "https://*.huggingface.co/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; connect-src 'self' https://api.groq.com https://huggingface.co https://*.huggingface.co"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://meet.google.com/*",
+        "https://*.zoom.us/*",
+        "https://app.zoom.us/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

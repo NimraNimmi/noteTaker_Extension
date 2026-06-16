@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h2>🎙️ Meet Notetaker</h2>
+
+    <div id="status" class="status">Not recording</div>
+
+    <div class="buttons">
+      <button id="startBtn">Start Recording</button>
+      <button id="stopBtn" disabled>Stop Recording</button>
+    </div>
+
+    <div class="hint">Switch to your Meet/Zoom tab first, then Start. Recording runs in background.</div>
+
+    <button id="openDashboardBtn" class="secondary" style="margin-top:6px;width:100%">Open Dashboard →</button>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

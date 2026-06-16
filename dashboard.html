@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Meet Notetaker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard">
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>🎙️ Meet Notetaker</h2>
+
+      <div id="status" class="status">Not recording</div>
+      <div class="buttons">
+        <button id="startBtn">Start Recording</button>
+        <button id="stopBtn" disabled>Stop Recording</button>
+      </div>
+      <div class="hint">Switch to your Meet/Zoom tab first, then click Start. Recording continues in the background.</div>
+
+      <h3>Recordings</h3>
+      <div id="meetingsList" class="meetings-list"></div>
+
+      <h3>Settings</h3>
+      <input type="password" id="groqKeyInput" placeholder="Groq API key (optional, free)" />
+      <button id="saveKeyBtn">Save Key</button>
+      <div id="keyStatus" class="muted"></div>
+      <div class="hint">Get a free key at <a href="https://console.groq.com" target="_blank">console.groq.com</a> for smarter summaries & chat.</div>
+    </aside>
+
+    <main class="content">
+      <div id="noSelection" class="empty-state">
+        Select a recording from the left, or start a new recording.
+      </div>
+
+      <div id="meetingView" class="meeting-view hidden">
+        <div class="meeting-header">
+          <h2 id="meetingTitle">Meeting</h2>
+          <div class="title-edit-row">
+            <input type="text" id="meetingTitleInput" placeholder="Rename this recording..." />
+            <button id="saveTitleBtn">Rename</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <audio id="audioPlayer" controls></audio>
+          <button id="transcribeBtn">Transcribe (Whisper)</button>
+          <button id="manualTranscribeBtn" class="secondary hidden">Manual Entry</button>
+          <button id="deleteBtn" class="danger">Delete</button>
+        </div>
+        <div id="transcribeStatus" class="muted"></div>
+
+        <!-- Manual transcript editor -->
+        <div id="manualTranscriptSection" class="hidden">
+          <h3>Enter / Edit Transcript Manually</h3>
+          <p class="hint">Paste or type the transcript below. This will replace any existing transcription.</p>
+          <textarea id="manualTranscriptInput" rows="10" placeholder="Paste transcript here..."></textarea>
+          <div class="row">
+            <button id="saveManualTranscriptBtn">Save Transcript</button>
+            <button id="cancelManualTranscriptBtn" class="secondary">Cancel</button>
+          </div>
+        </div>
+
+        <h3>Live Captions (your mic, captured during recording)</h3>
+        <div id="liveTranscript" class="box muted-box"></div>
+
+        <h3>Full Transcript</h3>
+        <div id="fullTranscript" class="box scrollable"></div>
+
+        <h3>Key Points / Summary</h3>
+        <div id="keyPoints" class="box"></div>
+
+        <h3>Chat About This Meeting</h3>
+        <div id="chatHistory" class="chat-history box scrollable"></div>
+        <div class="row chat-input-row">
+          <input type="text" id="chatInput" placeholder="Ask anything about this meeting... (Enter to send)" />
+          <button id="chatBtn">Ask</button>
+        </div>
+        <div id="chatAnswer" class="hidden"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
